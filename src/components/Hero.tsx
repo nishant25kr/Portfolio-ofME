@@ -1,6 +1,6 @@
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import profile from "../photos/profile.jpeg"
+import profile from "../photos/p.jpg"
 
 // Placeholder image URL from Pexels
 const profileImageUrl = profile;
