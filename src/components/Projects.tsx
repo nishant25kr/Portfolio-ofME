@@ -1,5 +1,6 @@
-import { useState, useRef } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 interface Project {
   id: number;
@@ -15,224 +16,181 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Job and Internship Platform',
-    description: 'A comprehensive platform connecting job seekers with employers, featuring job listings, applications, and profile management.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
-    features: ['User authentication', 'Job search and filtering', 'Application tracking', 'Employer dashboard', 'Resume builder'],
-    repoUrl: 'https://github.com/nishant25kr/Job-Internship-Platform',
-    demoUrl: 'https://job-platform-demo.netlify.app',
-    imageUrl: 'https://images.pexels.com/photos/3184357/pexels-photo-3184357.jpeg?auto=compress&cs=tinysrgb&w=600'
+    title: 'RealTime Chess Game',
+    description: 'A real-time multiplayer chess platform with move validation, asynchronous processing, and reliable game recovery.',
+    technologies: ['Node.js', 'React.js', 'Chess.js', 'WebSocket', 'Redis', 'PostgreSQL'],
+    features: [
+      'Real-time multiplayer gameplay with board rendering',
+      'Independent HTTP authentication server for secure login and authorization',
+      'Dedicated WebSocket server for live move synchronization',
+      'Redis queue to process game moves asynchronously',
+      'Worker server for persistent database storage and recovery'
+    ],
+    repoUrl: 'https://github.com/nishant25kr/chess',
+    demoUrl: 'https://github.com/nishant25kr/chess',
+    imageUrl: 'https://images.pexels.com/photos/277124/pexels-photo-277124.jpeg?auto=compress&cs=tinysrgb&w=600'
   },
   {
     id: 2,
-    title: 'Farmer Land Buying Platform',
-    description: 'A platform connecting farmers with land buyers, streamlining the land acquisition process with legal verification.',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Google Maps API'],
-    features: ['Land listing with geolocation', 'Document verification', 'User messaging', 'Payment processing', 'Legal compliance checks'],
-    repoUrl: 'https://github.com/nishant25kr/FARMCONNECT',
-    demoUrl: 'https://farmer-land-platform.netlify.app',
-    imageUrl: 'https://images.pexels.com/photos/2280567/pexels-photo-2280567.jpeg?auto=compress&cs=tinysrgb&w=600'
+    title: 'Meta Verse Platform',
+    description: 'A scalable real-time multi-user Metaverse platform built with a modular service-based architecture.',
+    technologies: ['Node.js', 'React.js', 'WebSocket', 'PostgreSQL', 'Prisma'],
+    features: [
+      'Modular microservice architecture separating HTTP APIs, WebSockets, and DB layers',
+      'Secure RESTful API for JWT-based auth and dynamic virtual space creation',
+      'Custom WebSocket server for movement synchronization and live presence tracking',
+      'Scalable spatial layout database schema using Prisma ORM'
+    ],
+    repoUrl: 'https://github.com/nishant25kr/meta-verse',
+    demoUrl: 'https://github.com/nishant25kr/meta-verse',
+    imageUrl: 'https://images.pexels.com/photos/8721318/pexels-photo-8721318.jpeg?auto=compress&cs=tinysrgb&w=600'
   },
   {
     id: 3,
-    title: 'To-do List Web App',
-    description: 'A feature-rich task management application with categorization, priorities, and deadline reminders.',
-    technologies: ['React', 'Firebase', 'Tailwind CSS'],
-    features: ['Task categories', 'Priority levels', 'Deadline notifications', 'Drag-and-drop reordering', 'Data export'],
-    repoUrl: 'https://github.com/nishant-kumar/todo-app',
-    demoUrl: 'https://nishant-todo-app.netlify.app',
-    imageUrl: 'https://images.pexels.com/photos/3299/postit-scrabble-to-do.jpg?auto=compress&cs=tinysrgb&w=600'
-  },
-  {
-    id: 4,
-    title: 'Packet Sniffing System',
-    description: 'A network monitoring tool for analyzing packet data, detecting intrusions, and visualizing network traffic.',
-    technologies: ['C++', 'Python', 'React', 'Chart.js'],
-    features: ['Real-time packet capture', 'Traffic analysis', 'Intrusion detection', 'Data visualization', 'Alert system'],
-    repoUrl: 'https://github.com/nishant-kumar/packet-sniffer',
-    demoUrl: 'https://packet-sniffer-demo.netlify.app',
-    imageUrl: 'https://images.pexels.com/photos/2881229/pexels-photo-2881229.jpeg?auto=compress&cs=tinysrgb&w=600'
+    title: 'AI Task Assignment System',
+    description: 'An AI-driven admin dashboard that analyses task requirements and dynamically assigns them to the most suitable employees.',
+    technologies: ['Node.js', 'React.js', 'MongoDB', 'Express.js', 'Gemini API'],
+    features: [
+      'Admin dashboard for organizational task management and tracking',
+      'AI-based assignment engine to extract required skills from task descriptions',
+      'Skill-based matching using AI text analysis to reduce manual allocation',
+      'Real-time dashboard updates reflecting assignments and status changes'
+    ],
+    repoUrl: 'https://github.com/nishant25kr/AI-Task-Assignment-System',
+    demoUrl: 'https://github.com/nishant25kr/AI-Task-Assignment-System',
+    imageUrl: 'https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600'
   }
 ];
 
-const Projects = () => {
-  const [activeProject, setActiveProject] = useState<Project | null>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
 
-  const openModal = (project: Project) => {
-    setActiveProject(project);
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeModal = () => {
-    setActiveProject(null);
-    document.body.style.overflow = 'auto';
-  };
-
-  const handleModalClick = (e: React.MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      closeModal();
-    }
-  };
+  const yImage = useTransform(scrollYProgress, [0, 1], [60, -60]);
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            My Projects
-          </h2>
-          <div className="h-1 w-20 bg-indigo-600 dark:bg-indigo-400 mx-auto"></div>
+    <div 
+      ref={ref}
+      className={`flex flex-col ${index % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-12 lg:gap-24`}
+    >
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full lg:w-1/2 relative group"
+      >
+        <motion.div 
+          style={{ y: yImage }}
+          className="aspect-[4/3] sm:aspect-video lg:aspect-[4/5] overflow-hidden rounded-[2rem] border border-[#F4F0EA]/10 shadow-2xl"
+        >
+          <div className="absolute inset-0 bg-[#0E0E0C]/40 group-hover:bg-transparent transition-colors duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] z-10"></div>
+          <img 
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-full object-cover filter grayscale opacity-90 transition-all duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:grayscale-0 group-hover:scale-110"
+          />
+        </motion.div>
+      </motion.div>
+      
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full lg:w-1/2 flex flex-col pt-2 pb-4"
+      >
+        <div className="flex-1">
+          <span className="text-[#F4F0EA]/50 font-mono text-sm mb-4 block">
+            0{index + 1}
+          </span>
+          <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#F4F0EA] mb-6 tracking-tight leading-tight mix-blend-difference">
+            {project.title}
+          </h3>
+          
+          <p className="text-[#F4F0EA]/70 mb-10 text-lg leading-relaxed font-light">
+            {project.description}
+          </p>
+          
+          <div className="flex flex-wrap gap-3 mb-12">
+            {project.technologies.map((tech) => (
+              <span 
+                key={tech} 
+                className="px-4 py-2 bg-transparent text-[#F4F0EA]/80 rounded-full text-[10px] md:text-xs uppercase tracking-[0.2em] border border-[#F4F0EA]/20 backdrop-blur-md"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          {projects.map((project) => (
-            <div 
-              key={project.id}
-              className="bg-gray-50 dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            >
-              <div className="h-56 overflow-hidden">
-                <img 
-                  src={project.imageUrl}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex justify-between items-center">
-                  <button
-                    onClick={() => openModal(project)}
-                    className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline"
-                  >
-                    View Details
-                  </button>
-                  <div className="flex space-x-3">
-                    <a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                      aria-label="GitHub Repository"
-                    >
-                      <Github className="w-5 h-5" />
-                    </a>
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                      aria-label="Live Demo"
-                    >
-                      <ExternalLink className="w-5 h-5" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="flex flex-wrap items-center gap-6 mt-auto">
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 text-[#0E0E0C] bg-[#F4F0EA] px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:bg-white transition-all duration-300 transform hover:scale-105"
+          >
+            View Project
+            <ExternalLink className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </a>
+          <a
+            href={project.repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-3 text-[#F4F0EA] border border-[#F4F0EA]/30 px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:bg-[#F4F0EA]/10 transition-all duration-300 transform hover:scale-105"
+          >
+            GitHub
+            <Github className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-12" />
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+const Projects = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const headerY = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
+  return (
+    <section ref={sectionRef} id="projects" className="py-32 bg-[#0E0E0C] text-[#F4F0EA]">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <motion.div 
+          style={{ y: headerY }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-32 flex flex-col md:flex-row justify-between items-end border-b border-[#F4F0EA]/10 pb-8"
+        >
+          <div>
+            <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-4">
+              02 // Work
+            </h2>
+            <h3 className="font-display text-6xl md:text-7xl lg:text-[7rem] tracking-tighter leading-none">
+              SELECTED<br />PROJECTS
+            </h3>
+          </div>
+          <p className="mt-8 md:mt-0 text-[#F4F0EA]/40 max-w-sm uppercase tracking-widest text-[10px] md:text-xs">
+            Pushing boundaries with code and intelligent architectures.
+          </p>
+        </motion.div>
+        
+        <div className="space-y-40">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
       </div>
-      
-      {/* Project Details Modal */}
-      {activeProject && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-          onClick={handleModalClick}
-        >
-          <div 
-            ref={modalRef}
-            className="bg-white dark:bg-gray-800 rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-          >
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {activeProject.title}
-                </h3>
-                <button
-                  onClick={closeModal}
-                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-                >
-                  &times;
-                </button>
-              </div>
-              
-              <div className="mb-6">
-                <img 
-                  src={activeProject.imageUrl}
-                  alt={activeProject.title}
-                  className="w-full h-56 object-cover rounded-lg"
-                />
-              </div>
-              
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
-                {activeProject.description}
-              </p>
-              
-              <div className="mb-4">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Features
-                </h4>
-                <ul className="list-disc list-inside text-gray-700 dark:text-gray-300">
-                  {activeProject.features.map((feature, index) => (
-                    <li key={index}>{feature}</li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div className="mb-6">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                  Technologies
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {activeProject.technologies.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 rounded-full text-sm"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="flex space-x-4">
-                <a
-                  href={activeProject.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
-                >
-                  Live Demo
-                </a>
-                <a
-                  href={activeProject.repoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg transition-colors"
-                >
-                  View Code
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

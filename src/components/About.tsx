@@ -1,77 +1,103 @@
+import { motion } from 'framer-motion';
 import { Code, Users, Clock, Briefcase } from 'lucide-react';
+
+const features = [
+  {
+    icon: <Code className="w-5 h-5" />,
+    title: "Technical Excellence",
+    description: "Proficient in modern Web Technologies, robust architectures, and strong algorithmic fundamentals."
+  },
+  {
+    icon: <Users className="w-5 h-5" />,
+    title: "Team Player",
+    description: "I thrive in collaborative agile environments, leveraging communication to build robust applications."
+  },
+  {
+    icon: <Clock className="w-5 h-5" />,
+    title: "Iterative Learning",
+    description: "Constantly learning and adapting to dynamic technology landscapes and emerging paradigms."
+  },
+  {
+    icon: <Briefcase className="w-5 h-5" />,
+    title: "Project Engineering",
+    description: "Experience in system architecture and orchestrating applications from concept to deployment."
+  }
+];
 
 const About = () => {
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            About Me
-          </h2>
-          <div className="h-1 w-20 bg-indigo-600 dark:bg-indigo-400 mx-auto"></div>
+    <section id="about" className="py-32 bg-[#131312] relative overflow-hidden text-[#F4F0EA]">
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
+
+        {/* Top Header Row */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-[#F4F0EA]/10 pb-8">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-sm mb-4">
+              01 // About Me
+            </h2>
+            <h3 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none">
+              WHO<br />I AM
+            </h3>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-md mt-12 md:mt-0"
+          >
+            <p className="text-lg md:text-xl font-light text-[#F4F0EA]/70 leading-relaxed mix-blend-difference">
+              I'm a Full-Stack Developer and B.Tech CSE student at Lovely Professional University. I specialize in architecting intelligent systems that merge profound aesthetics with engineered performance.
+            </p>
+          </motion.div>
         </div>
-        
-        <div className="max-w-4xl mx-auto">
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 text-center leading-relaxed">
-            I'm a B.Tech CSE student at Lovely Professional University with a passion for building 
-            scalable and efficient web applications. I specialize in the MERN stack and have a strong 
-            foundation in C++ and data structures & algorithms. My goal is to create technology that 
-            makes a positive impact.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform hover:transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-full mr-4">
-                  <Code className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Technical Skills</h3>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                Proficient in MERN Stack (MongoDB, Express.js, React, Node.js), C++, Java, and 
-                Data Structures & Algorithms. Experienced in building responsive, user-friendly web applications.
-              </p>
-            </div>
-            
-            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform hover:transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-full mr-4">
-                  <Users className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Team Player</h3>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                I thrive in collaborative environments and enjoy working with diverse teams to solve complex problems. 
-                I value open communication and believe in the power of collective creativity.
-              </p>
-            </div>
-            
-            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform hover:transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-full mr-4">
-                  <Clock className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Adaptability</h3>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                I quickly adapt to new technologies and environments. The tech landscape is ever-evolving, 
-                and I embrace the challenge of learning new frameworks, languages, and methodologies.
-              </p>
-            </div>
-            
-            <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform hover:transform hover:scale-105">
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-full mr-4">
-                  <Briefcase className="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Project Management</h3>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                I have experience managing projects from conception to completion. I'm skilled at breaking down 
-                complex tasks, setting milestones, and ensuring deliverables are met on time.
-              </p>
-            </div>
+
+        {/* Feature Grid - Asymmetrical Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-24 relative">
+
+          <div className="md:col-span-5 lg:col-span-4 flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="aspect-[4/5] bg-gradient-to-tr from-[#E5D3B3]/20 directly to-transparent border border-[#F4F0EA]/10 rounded-3xl p-8 relative overflow-hidden group"
+            >
+              <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-10 transition-opacity duration-700"></div>
+              <h4 className="font-display text-4xl leading-tight relative z-10 mix-blend-plus-lighter">
+                Driven by <br /> logic, <br /> designed for <br /> humans.
+              </h4>
+            </motion.div>
           </div>
+
+          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16 mt-12 md:mt-0">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+                className="group cursor-default relative pl-6 border-l border-[#F4F0EA]/20 hover:border-[#F4F0EA] transition-colors duration-500"
+              >
+                <div className="mb-6 text-[#F4F0EA]/50 group-hover:text-[#E5D3B3] transition-colors duration-500">
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-display mb-4 tracking-tight">
+                  {feature.title}
+                </h3>
+                <p className="text-[#F4F0EA]/60 font-light leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

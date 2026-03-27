@@ -1,91 +1,60 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Moon, Sun, Github, Linkedin, Mail } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import { Menu, X } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Certifications', href: '#certifications' },
-  { name: 'Education', href: '#education' },
+  { name: 'Work', href: '#projects' },
+  { name: 'Expertise', href: '#skills' },
   { name: 'Contact', href: '#contact' },
 ];
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, []);
 
   return (
     <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-700 ${
         scrolled 
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md' 
-          : 'bg-transparent'
+          ? 'py-4 bg-[#0E0E0C]/80 backdrop-blur-md border-b border-[#F4F0EA]/5' 
+          : 'py-8 bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <a href="#home" className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
-            Nishant Kumar
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <div className="flex justify-between items-center">
+          <a href="#home" className="text-xl font-display font-bold tracking-tighter text-[#F4F0EA] hover:opacity-70 transition-opacity">
+            NK.
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
+                className="text-[#F4F0EA]/60 hover:text-[#F4F0EA] text-xs uppercase tracking-[0.2em] transition-colors"
               >
                 {item.name}
               </a>
             ))}
-            
-            {/* Theme Toggle Button */}
-            <button 
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5 text-yellow-400" />
-              ) : (
-                <Moon className="w-5 h-5 text-gray-700" />
-              )}
-            </button>
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center md:hidden space-x-4">
-            <button 
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5 text-yellow-400" />
-              ) : (
-                <Moon className="w-5 h-5 text-gray-700" />
-              )}
-            </button>
+          <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-700 dark:text-gray-300"
-              aria-label="Open menu"
+              className="text-[#F4F0EA] focus:outline-none"
+              aria-label="Toggle menu"
             >
               <Menu className="w-6 h-6" />
             </button>
@@ -94,62 +63,46 @@ const Header = () => {
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-white dark:bg-gray-900 overflow-hidden">
-          <div className="container mx-auto px-4 py-4">
-            <div className="flex justify-between items-center">
-              <a href="#home" className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
-                Nishant Kumar
-              </a>
-              <button
+      <div 
+        className={`fixed inset-0 z-50 bg-[#0E0E0C] transform transition-transform duration-700 ease-in-out ${
+          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="container mx-auto px-6 py-8 h-full flex flex-col">
+          <div className="flex justify-between items-center">
+            <a href="#home" className="text-xl font-display font-bold tracking-tighter text-[#F4F0EA]">
+              NK.
+            </a>
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-[#F4F0EA]"
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <nav className="mt-auto mb-auto flex flex-col space-y-8">
+            {navItems.map((item, index) => (
+              <a
+                key={item.name}
+                href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-gray-700 dark:text-gray-300"
-                aria-label="Close menu"
+                className="text-4xl sm:text-6xl font-display font-medium text-[#F4F0EA] hover:text-[#E5D3B3] transition-colors"
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
+                {item.name}
+              </a>
+            ))}
+          </nav>
 
-            <nav className="mt-8 flex flex-col space-y-6">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-
-            <div className="mt-auto pt-8 flex justify-center space-x-6">
-              <a
-                href="https://github.com/nishant-kumar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-              <a
-                href="https://linkedin.com/in/nishant-kumar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="mailto:nishant927472@gmail.com"
-                className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-              >
-                <Mail className="w-6 h-6" />
-              </a>
-            </div>
+          <div className="pb-8">
+            <a href="mailto:nishant927472@gmail.com" className="text-[#F4F0EA]/50 uppercase tracking-[0.2em] text-sm hover:text-[#F4F0EA] transition-colors">
+              nishant927472@gmail.com
+            </a>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };

@@ -1,216 +1,149 @@
-import { useState, useRef, useEffect } from 'react';
-import { BookOpen, Trophy } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-interface EducationItem {
-  id: number;
-  institution: string;
-  degree: string;
-  period: string;
-  location: string;
-  //score: string;
-  details: string[];
-}
-
-interface AchievementItem {
-  id: number;
-  title: string;
-  organization: string;
-  date: string;
-  description: string;
-}
-
-const educationData: EducationItem[] = [
+const educationData = [
   {
     id: 1,
     institution: 'Lovely Professional University',
     degree: 'B.Tech in Computer Science & Engineering',
-    period: '2022 - Present',
-    location: 'Punjab, India',
-    //score: 'CGPA: 8.5/10',
+    period: '2022 - 2026',
+    location: 'Phagwara, Punjab',
     details: [
-      'Specializing in Full-Stack Development and Machine Learning',
-      'Active member of the Programming Club and Coding Competitions',
-      'Participated in multiple hackathons and Smart India Hackathon',
-      'Developed several projects including job platforms and land buying systems'
+      'CGPA: 6.50',
+      'Specializing in Full-Stack Web Development',
+      'Built advanced projects like real-time multiplayer chess and Metaverse platforms'
     ]
   },
   {
     id: 2,
     institution: 'Indian Public School',
     degree: 'Intermediate (12th)',
-    period: '2020 - 2022',
-    location: 'Purnia, India',
-    //score: 'Percentage: 71%',
+    period: '2019 - 2020',
+    location: 'Purnia, Bihar',
     details: [
-      'Focused on Physics, Chemistry, and Mathematics',
-      'Participated in various science exhibitions and competitions',
-      'Developed interest in programming and computer science',
-      
+      'Percentage: 70.00%',
+      'Focused on Mathematics and Science fundamentals',
+      'Developed early interest in programming and computer science'
     ]
   }
 ];
 
-const achievementsData: AchievementItem[] = [
+const experienceData = [
   {
     id: 1,
-    title: 'Smart India Hackathon',
-    organization: 'LPU',
-    date: 'August 2023',
-    description: 'Led a team of 6 developers to create an innovative solution for agricultural land management, winning the regional finals of Smart India Hackathon.'
-  },
-  {
-    id: 2,
-    title: 'Community Development Project',
-    organization: 'LPU',
-    date: 'March 2023',
-    description: 'Developed and deployed a web platform to connect local farmers with consumers, reducing middleman costs and increasing farmer profits by 15%.'
+    title: 'Full Stack Developer Intern',
+    organization: 'Dhobi G (Remote)',
+    date: 'June 2025 - Jul 2025',
+    description: 'Developed a responsive web-based laundry management platform using Next.js for dynamic UI components and Django for RESTful APIs enabling secure user management and order processing. Collaborated in Agile sprints, utilizing AI tools and Git for task efficiency.'
   }
 ];
 
 const Education = () => {
-  const [activeTab, setActiveTab] = useState<'education' | 'achievements'>('education');
-  const [animated, setAnimated] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !animated) {
-          setAnimated(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [animated]);
+  const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
 
   return (
-    <section id="education" className="py-20 bg-white dark:bg-gray-900" ref={sectionRef}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Education & Achievements
-          </h2>
-          <div className="h-1 w-20 bg-indigo-600 dark:bg-indigo-400 mx-auto"></div>
-        </div>
-        
-        <div className="max-w-4xl mx-auto">
-          {/* Tabs */}
-          <div className="flex justify-center mb-12">
-            <div className="inline-flex p-1 rounded-lg bg-gray-200 dark:bg-gray-700">
-              <button
-                onClick={() => setActiveTab('education')}
-                className={`flex items-center px-4 py-2 rounded-md ${
-                  activeTab === 'education'
-                    ? 'bg-white dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
-                }`}
-              >
-                <BookOpen className="w-4 h-4 mr-2" />
-                Education
-              </button>
-              <button
-                onClick={() => setActiveTab('achievements')}
-                className={`flex items-center px-4 py-2 rounded-md ${
-                  activeTab === 'achievements'
-                    ? 'bg-white dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
-                }`}
-              >
-                <Trophy className="w-4 h-4 mr-2" />
-                Achievements
-              </button>
-            </div>
+    <section id="education" className="py-32 bg-[#0E0E0C] text-[#F4F0EA] min-h-screen">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-24 flex flex-col md:flex-row justify-between items-end border-b border-[#F4F0EA]/10 pb-8"
+        >
+          <div>
+            <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-sm mb-4">
+              04 // Timeline
+            </h2>
+            <h3 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none">
+              MILESTONES
+            </h3>
           </div>
           
-          {/* Education Content */}
-          {activeTab === 'education' && (
-            <div className="space-y-8">
-              {educationData.map((item, index) => (
-                <div 
-                  key={item.id}
-                  className={`bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-500 ${
-                    animated ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
-                >
-                  <div className="p-6">
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                          {item.institution}
-                        </h3>
-                        <p className="text-indigo-600 dark:text-indigo-400 font-medium">
-                          {item.degree}
-                        </p>
-                      </div>
-                      <div className="md:text-right mt-2 md:mt-0">
-                        <span className="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 rounded-full text-sm mb-2">
-                          {item.period}
-                        </span>
-                        <p className="text-gray-600 dark:text-gray-400 text-sm">
-                          {item.location}
-                        </p>
-                        {/* <p className="text-gray-800 dark:text-gray-200 font-medium">
-                          {item.score}
-                        </p> */}
-                      </div>
+          <div className="flex gap-6 mt-8 md:mt-0">
+            <button
+              onClick={() => setActiveTab('experience')}
+              className={`text-lg font-display tracking-tight transition-colors duration-300 ${activeTab === 'experience' ? 'text-[#F4F0EA]' : 'text-[#F4F0EA]/30 hover:text-[#F4F0EA]/70'}`}
+            >
+              Experience
+            </button>
+            <span className="text-[#F4F0EA]/20">/</span>
+            <button
+              onClick={() => setActiveTab('education')}
+              className={`text-lg font-display tracking-tight transition-colors duration-300 ${activeTab === 'education' ? 'text-[#F4F0EA]' : 'text-[#F4F0EA]/30 hover:text-[#F4F0EA]/70'}`}
+            >
+              Education
+            </button>
+          </div>
+        </motion.div>
+        
+        <div className="max-w-4xl">
+          <AnimatePresence mode="wait">
+            {activeTab === 'experience' ? (
+              <motion.div
+                key="experience"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="space-y-16"
+              >
+                {experienceData.map((item) => (
+                  <div key={item.id} className="group relative pl-8 md:pl-0">
+                    <div className="hidden md:block absolute left-[-40px] top-4 w-3 h-3 rounded-full border border-[#F4F0EA]/30 group-hover:bg-[#F4F0EA] group-hover:scale-150 transition-all duration-500"></div>
+                    <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                      <h4 className="font-display text-3xl md:text-5xl tracking-tight mb-2 md:mb-0">
+                        {item.title}
+                      </h4>
+                      <span className="text-[#F4F0EA]/50 font-mono text-sm uppercase tracking-widest shrink-0 md:ml-8">
+                        {item.date}
+                      </span>
                     </div>
-                    <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-2">
-                      {item.details.map((detail, i) => (
-                        <li key={i}>{detail}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-          
-          {/* Achievements Content */}
-          {activeTab === 'achievements' && (
-            <div className="space-y-8">
-              {achievementsData.map((item, index) => (
-                <div 
-                  key={item.id}
-                  className={`bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-500 ${
-                    animated ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-                  }`}
-                  style={{ transitionDelay: `${index * 200}ms` }}
-                >
-                  <div className="p-6">
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                      <div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                          {item.title}
-                        </h3>
-                        <p className="text-indigo-600 dark:text-indigo-400 font-medium">
-                          {item.organization}
-                        </p>
-                      </div>
-                      <div className="md:text-right mt-2 md:mt-0">
-                        <span className="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400 rounded-full text-sm">
-                          {item.date}
-                        </span>
-                      </div>
+                    <div className="text-xl text-[#F4F0EA]/70 mb-6 font-display">
+                      {item.organization}
                     </div>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-[#F4F0EA]/50 font-light leading-relaxed max-w-2xl text-lg">
                       {item.description}
                     </p>
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
+                ))}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="education"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="space-y-16"
+              >
+                {educationData.map((item) => (
+                  <div key={item.id} className="group relative pl-8 md:pl-0">
+                    <div className="hidden md:block absolute left-[-40px] top-4 w-3 h-3 rounded-full border border-[#F4F0EA]/30 group-hover:bg-[#F4F0EA] group-hover:scale-150 transition-all duration-500"></div>
+                    <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
+                      <h4 className="font-display text-3xl md:text-5xl tracking-tight mb-2 md:mb-0">
+                        {item.institution}
+                      </h4>
+                      <span className="text-[#F4F0EA]/50 font-mono text-sm uppercase tracking-widest shrink-0 md:ml-8">
+                        {item.period}
+                      </span>
+                    </div>
+                    <div className="text-xl text-[#F4F0EA]/70 mb-6 font-display">
+                      {item.degree} <span className="mx-2">•</span> <span className="text-[#F4F0EA]/40">{item.location}</span>
+                    </div>
+                    <ul className="space-y-3 max-w-2xl">
+                      {item.details.map((detail, i) => (
+                        <li key={i} className="flex items-start text-[#F4F0EA]/50 font-light text-lg">
+                          <span className="mr-4 text-[#F4F0EA]/30 mt-1.5 text-xs">◆</span>
+                          <span className="leading-relaxed">{detail}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </section>

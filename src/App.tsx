@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { ThemeProvider } from './context/ThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -9,11 +9,13 @@ import Education from './components/Education';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
 
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+      <div className="min-h-screen bg-[#0E0E0C] text-[#F4F0EA] selection:bg-white selection:text-black">
+        <CustomCursor />
         <Header />
         <main>
           <Hero />

@@ -1,162 +1,110 @@
-import { useState, useEffect, useRef } from 'react';
-import { Code, Server, PenTool as Tool } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
-interface Skill {
-  name: string;
-  category: 'language' | 'framework' | 'tool';
-  description: string;
-  icon: JSX.Element;
-}
-
-const skills: Skill[] = [
-  { 
-    name: 'C++', 
-    category: 'language',
-    description: 'Expert in data structures, algorithms, and system programming',
-    icon: <Code className="w-6 h-6" />
+const skillCategories = [
+  {
+    title: 'Languages',
+    skills: ['C++', 'JavaScript', 'TypeScript', 'HTML/CSS']
   },
-  { 
-    name: 'Java', 
-    category: 'language',
-    description: 'Proficient in object-oriented programming and enterprise applications',
-    icon: <Code className="w-6 h-6" />
+  {
+    title: 'Frameworks',
+    skills: ['React JS', 'Node.js', 'Express.js', 'Tailwind CSS']
   },
-  { 
-    name: 'JavaScript', 
-    category: 'language',
-    description: 'Advanced knowledge of modern ES6+ features and async programming',
-    icon: <Code className="w-6 h-6" />
+  {
+    title: 'Databases',
+    skills: ['PostgreSQL', 'MongoDB', 'Redis']
   },
-  { 
-    name: 'Node.js', 
-    category: 'framework',
-    description: 'Building scalable backend services and REST APIs',
-    icon: <Server className="w-6 h-6" />
-  },
-  { 
-    name: 'React', 
-    category: 'framework',
-    description: 'Creating responsive and interactive user interfaces',
-    icon: <Server className="w-6 h-6" />
-  },
-  { 
-    name: 'Bootstrap', 
-    category: 'framework',
-    description: 'Rapid development of responsive web applications',
-    icon: <Server className="w-6 h-6" />
-  },
-  { 
-    name: 'MongoDB', 
-    category: 'tool',
-    description: 'Database design and optimization for NoSQL applications',
-    icon: <Tool className="w-6 h-6" />
-  },
-  { 
-    name: 'MySQL', 
-    category: 'tool',
-    description: 'Relational database management and query optimization',
-    icon: <Tool className="w-6 h-6" />
-  },
-  { 
-    name: 'GitHub', 
-    category: 'tool',
-    description: 'Version control and collaborative development workflows',
-    icon: <Tool className="w-6 h-6" />
+  {
+    title: 'Core',
+    skills: ['Data Structures', 'Algorithms', 'System Design']
   }
 ];
 
 const Skills = () => {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'language' | 'framework' | 'tool'>('all');
-  const [visibleSkills, setVisibleSkills] = useState<Skill[]>(skills);
-  const [animated, setAnimated] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const filteredSkills = activeFilter === 'all' 
-      ? skills 
-      : skills.filter(skill => skill.category === activeFilter);
-    
-    setVisibleSkills(filteredSkills);
-  }, [activeFilter]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !animated) {
-          setAnimated(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, [animated]);
-
-  const filters = [
-    { name: 'All', value: 'all' },
-    { name: 'Languages', value: 'language' },
-    { name: 'Frameworks', value: 'framework' },
-    { name: 'Tools', value: 'tool' },
-  ];
+  const [hoveredCategory, setHoveredCategory] = useState<number | null>(null);
 
   return (
-    <section id="skills" className="py-20 bg-gray-50 dark:bg-gray-800" ref={sectionRef}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Skills & Expertise
-          </h2>
-          <div className="h-1 w-20 bg-indigo-600 dark:bg-indigo-400 mx-auto"></div>
-        </div>
+    <section id="skills" className="py-32 bg-[#131312] text-[#F4F0EA] min-h-screen flex flex-col justify-center">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="mb-24 flex flex-col md:flex-row justify-between items-end border-b border-[#F4F0EA]/10 pb-8"
+        >
+          <div>
+            <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-sm mb-4">
+              03 // Capabilities
+            </h2>
+            <h3 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none">
+              EXPERTISE
+            </h3>
+          </div>
+        </motion.div>
         
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex p-1 rounded-lg bg-gray-200 dark:bg-gray-700">
-            {filters.map((filter) => (
-              <button
-                key={filter.value}
-                onClick={() => setActiveFilter(filter.value as any)}
-                className={`px-4 py-2 rounded-md text-sm ${
-                  activeFilter === filter.value
-                    ? 'bg-white dark:bg-gray-600 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400'
-                }`}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+          
+          {/* Left Column: Categories */}
+          <div className="lg:col-span-5 border-r border-[#F4F0EA]/10 pr-0 lg:pr-12">
+            {skillCategories.map((cat, index) => (
+              <div 
+                key={index}
+                onMouseEnter={() => setHoveredCategory(index)}
+                onMouseLeave={() => setHoveredCategory(null)}
+                className="group border-b border-[#F4F0EA]/10 last:border-0 py-8 cursor-pointer relative"
               >
-                {filter.name}
-              </button>
+                <div className="flex justify-between items-center relative z-10 transition-transform duration-500 group-hover:translate-x-4">
+                  <h4 className="font-display text-3xl md:text-5xl text-[#F4F0EA] mix-blend-difference">
+                    {cat.title}
+                  </h4>
+                  <span className="text-[#E5D3B3] font-mono opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    →
+                  </span>
+                </div>
+                {/* Background sliding effect */}
+                <div className="absolute inset-0 bg-[#F4F0EA] transform scale-y-0 group-hover:scale-y-100 origin-bottom transition-transform duration-500 z-0"></div>
+              </div>
             ))}
           </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {visibleSkills.map((skill, index) => (
-            <div
-              key={skill.name}
-              className={`bg-white dark:bg-gray-700 rounded-lg p-6 shadow-md transform transition-all duration-500 hover:shadow-lg hover:-translate-y-1 ${
-                animated ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="flex items-center mb-4">
-                <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-full mr-4 text-indigo-600 dark:text-indigo-400">
-                  {skill.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  {skill.name}
-                </h3>
-              </div>
-              <p className="text-gray-700 dark:text-gray-300">
-                {skill.description}
-              </p>
-            </div>
-          ))}
+          
+          {/* Right Column: Skills Display */}
+          <div className="lg:col-span-7 flex flex-col justify-center min-h-[300px]">
+             <AnimatePresence mode="wait">
+               {hoveredCategory !== null ? (
+                 <motion.div
+                   key={hoveredCategory}
+                   initial={{ opacity: 0, x: 20 }}
+                   animate={{ opacity: 1, x: 0 }}
+                   exit={{ opacity: 0, x: -20 }}
+                   transition={{ duration: 0.4 }}
+                   className="flex flex-wrap gap-4"
+                 >
+                   {skillCategories[hoveredCategory].skills.map((skill, i) => (
+                      <motion.span 
+                        key={skill}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1, duration: 0.4 }}
+                        className="px-6 py-4 rounded-full border border-[#F4F0EA]/20 text-xl font-light tracking-wide bg-[#0E0E0C] text-[#F4F0EA]"
+                      >
+                        {skill}
+                      </motion.span>
+                   ))}
+                 </motion.div>
+               ) : (
+                 <motion.div
+                   initial={{ opacity: 0 }}
+                   animate={{ opacity: 1 }}
+                   exit={{ opacity: 0 }}
+                   className="text-[#F4F0EA]/30 font-display text-4xl md:text-6xl uppercase tracking-tighter leading-tight"
+                 >
+                   Hover over <br /> a category <br /> to reveal <br /> stack.
+                 </motion.div>
+               )}
+             </AnimatePresence>
+          </div>
+
         </div>
       </div>
     </section>

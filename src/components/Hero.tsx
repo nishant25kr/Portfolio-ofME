@@ -1,94 +1,86 @@
-import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import profile from "../photos/p.jpg"
-
-// Placeholder image URL from Pexels
-const profileImageUrl = profile;
+import { Github, Linkedin, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+import profile from "../photos/p.jpg";
 
 const Hero = () => {
-  const [textIndex, setTextIndex] = useState(0);
-  const texts = ["Full-Stack Developer", "MERN Stack", "C++ Enthusiast"];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section 
-      id="home" 
-      className="min-h-screen flex items-center justify-center relative pt-20 bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-gray-800"
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center justify-between">
-          <div className="lg:w-1/2 mb-10 lg:mb-0 text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-              Hi, I'm <span className="text-indigo-600 dark:text-indigo-400">Nishant Kumar</span>
-            </h1>
-            
-            <div className="h-10 mb-6">
-              <p className="text-2xl text-indigo-600 dark:text-indigo-400 font-medium">
-                {texts[textIndex]}
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden bg-[#0E0E0C]">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10 w-full">
+        {/* Asymmetrical Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-center">
+
+          {/* Main Typography Column */}
+          <div className="lg:col-span-8 flex flex-col justify-center order-2 lg:order-1 relative z-20">
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-8"
+            >
+              <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-6 ml-2">
+                Creative Developer & Engineer
+              </h2>
+              <h1 className="font-display text-[12vw] lg:text-[8rem] leading-[0.85] text-[#F4F0EA] tracking-tighter mix-blend-difference mb-4">
+                Nishant <br /> Kumar.
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-4 md:mt-10"
+            >
+              <p className="max-w-md text-[#F4F0EA]/70 text-lg md:text-xl font-light leading-relaxed ml-2">
+                Crafting scalable web solutions and intelligent systems. I turn bold ideas into immersive digital experiences.
               </p>
-            </div>
-            
-            <p className="text-xl text-gray-700 dark:text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0">
-              Building scalable web solutions, one line of code at a time.
-            </p>
-            
-            <div className="flex justify-center lg:justify-start space-x-6">
-              <a
-                href="https://github.com/nishant25kr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-                aria-label="GitHub"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-              <a
-                href="https://linkedin.com/in/nishant25kr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="mailto:nishant927472@gmail.com"
-                className="p-3 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all"
-                aria-label="Email"
-              >
-                <Mail className="w-6 h-6" />
-              </a>
-            </div>
-          </div>
-          <div className="lg:w-1/2 flex justify-center">
-            <div className="relative">
-              <div className="absolute inset-0 bg-indigo-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-              <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-indigo-500 dark:border-indigo-400 shadow-xl">
-                <img
-                  src={profileImageUrl}
-                  alt="Nishant Kumar"
-                  className="w-full h-full object-cover"
-                />
+
+              <div className="flex space-x-4 sm:ml-auto pr-4">
+                <a
+                  href="https://github.com/nishant25kr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full border border-[#F4F0EA]/20 flex items-center justify-center text-[#F4F0EA] hover:bg-[#F4F0EA] hover:text-[#0E0E0C] transition-all duration-300 transform hover:scale-110"
+                >
+                  <Github className="w-5 h-5" />
+                </a>
+                <a
+                  href="https://linkedin.com/in/nishant25kr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 rounded-full border border-[#F4F0EA]/20 flex items-center justify-center text-[#F4F0EA] hover:bg-[#F4F0EA] hover:text-[#0E0E0C] transition-all duration-300 transform hover:scale-110"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+                <a
+                  href="mailto:nishant927472@gmail.com"
+                  className="w-12 h-12 rounded-full border border-[#F4F0EA]/20 flex items-center justify-center text-[#F4F0EA] hover:bg-[#F4F0EA] hover:text-[#0E0E0C] transition-all duration-300 transform hover:scale-110"
+                >
+                  <Mail className="w-5 h-5" />
+                </a>
               </div>
-            </div>
+            </motion.div>
           </div>
-        </div>
-        
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <a 
-            href="#about" 
-            className="p-2 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400"
-            aria-label="Scroll Down"
+
+          {/* Cinematic Image Column */}
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-4 flex justify-center lg:justify-end order-1 lg:order-2 w-full"
           >
-            <ChevronDown className="w-6 h-6" />
-          </a>
+            <div className="relative w-64 h-80 sm:w-80 sm:h-[26rem] lg:w-[26rem] lg:h-[36rem] overflow-hidden rounded-[2rem] border border-[#F4F0EA]/10 group">
+              {/* Subtle overlay gradient to blend image with background */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0C] via-transparent to-transparent opacity-80 z-10 transition-opacity duration-700 group-hover:opacity-40"></div>
+              <img
+                src={profile}
+                alt="Nishant Kumar"
+                className="w-full h-full object-cover filter grayscale opacity-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+              />
+            </div>
+          </motion.div>
         </div>
+
       </div>
     </section>
   );
