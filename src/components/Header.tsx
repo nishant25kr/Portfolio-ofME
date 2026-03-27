@@ -26,23 +26,23 @@ const Header = () => {
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-700 ${
         scrolled 
-          ? 'py-4 bg-[#0E0E0C]/80 backdrop-blur-md border-b border-[#F4F0EA]/5' 
-          : 'py-8 bg-transparent'
+          ? 'py-4 bg-[rgba(12,14,23,0.72)] backdrop-blur-xl border-b border-[var(--border-soft)] shadow-[0_12px_45px_rgba(0,0,0,0.32)]'
+          : 'py-7 bg-transparent'
       }`}
     >
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <div className="flex justify-between items-center">
-          <a href="#home" className="text-xl font-display font-bold tracking-tighter text-[#F4F0EA] hover:opacity-70 transition-opacity">
+          <a href="#home" className="text-xl font-display font-bold tracking-tight text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors duration-500">
             NK.
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-12">
+          <nav className="hidden md:flex items-center space-x-10">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-[#F4F0EA]/60 hover:text-[#F4F0EA] text-xs uppercase tracking-[0.2em] transition-colors"
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)] text-[11px] uppercase tracking-[0.24em] transition-colors duration-500"
               >
                 {item.name}
               </a>
@@ -53,7 +53,7 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-[#F4F0EA] focus:outline-none"
+              className="text-[var(--text-primary)] focus:outline-none"
               aria-label="Toggle menu"
             >
               <Menu className="w-6 h-6" />
@@ -64,18 +64,18 @@ const Header = () => {
 
       {/* Mobile Menu */}
       <div 
-        className={`fixed inset-0 z-50 bg-[#0E0E0C] transform transition-transform duration-700 ease-in-out ${
+        className={`fixed inset-0 z-50 bg-[rgba(9,10,16,0.96)] backdrop-blur-2xl transform transition-transform duration-700 ease-in-out ${
           mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
         <div className="container mx-auto px-6 py-8 h-full flex flex-col">
           <div className="flex justify-between items-center">
-            <a href="#home" className="text-xl font-display font-bold tracking-tighter text-[#F4F0EA]">
+            <a href="#home" className="text-xl font-display font-bold tracking-tight text-[var(--text-primary)]">
               NK.
             </a>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="text-[#F4F0EA]"
+              className="text-[var(--text-primary)]"
               aria-label="Close menu"
             >
               <X className="w-6 h-6" />
@@ -88,7 +88,7 @@ const Header = () => {
                 key={item.name}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-4xl sm:text-6xl font-display font-medium text-[#F4F0EA] hover:text-[#E5D3B3] transition-colors"
+                className="text-4xl sm:text-6xl font-display font-medium text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors"
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 {item.name}
@@ -97,7 +97,7 @@ const Header = () => {
           </nav>
 
           <div className="pb-8">
-            <a href="mailto:nishant927472@gmail.com" className="text-[#F4F0EA]/50 uppercase tracking-[0.2em] text-sm hover:text-[#F4F0EA] transition-colors">
+            <a href="mailto:nishant927472@gmail.com" className="text-[var(--text-soft)] uppercase tracking-[0.24em] text-sm hover:text-[var(--text-primary)] transition-colors">
               nishant927472@gmail.com
             </a>
           </div>

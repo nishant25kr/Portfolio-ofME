@@ -4,9 +4,20 @@ import profile from "../photos/p.jpg";
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden bg-[#0E0E0C]">
+    <section id="home" className="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden bg-[var(--bg-primary)]">
+      <motion.div
+        aria-hidden
+        animate={{ x: [0, 18, -12, 0], y: [0, -24, 16, 0] }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -top-44 right-[8%] h-[30rem] w-[30rem] rounded-full bg-[radial-gradient(circle,rgba(223,194,149,0.2),rgba(223,194,149,0))] blur-3xl"
+      />
+      <motion.div
+        aria-hidden
+        animate={{ x: [0, -14, 10, 0], y: [0, 20, -16, 0] }}
+        transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -bottom-48 left-[2%] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(127,140,255,0.15),rgba(127,140,255,0))] blur-3xl"
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-12 relative z-10 w-full">
-        {/* Asymmetrical Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0 items-center">
 
           {/* Main Typography Column */}
@@ -17,10 +28,10 @@ const Hero = () => {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="mb-8"
             >
-              <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-6 ml-2">
+              <h2 className="text-[var(--text-soft)] font-medium tracking-[0.26em] uppercase text-xs md:text-sm mb-6 ml-2">
                 Creative Developer & Engineer
               </h2>
-              <h1 className="font-display text-[12vw] lg:text-[8rem] leading-[0.85] text-[#F4F0EA] tracking-tighter mix-blend-difference mb-4">
+              <h1 className="font-display text-[12vw] lg:text-[8rem] leading-[0.84] text-[var(--text-primary)] tracking-[-0.04em] mb-4">
                 Nishant <br /> Kumar.
               </h1>
             </motion.div>
@@ -29,9 +40,9 @@ const Hero = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-4 md:mt-10"
+              className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-5 md:mt-10"
             >
-              <p className="max-w-md text-[#F4F0EA]/70 text-lg md:text-xl font-light leading-relaxed ml-2">
+              <p className="max-w-lg text-[var(--text-muted)] text-lg md:text-xl font-light leading-relaxed ml-2">
                 Crafting scalable web solutions and intelligent systems. I turn bold ideas into immersive digital experiences.
               </p>
 
@@ -40,7 +51,7 @@ const Hero = () => {
                   href="https://github.com/nishant25kr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-[#F4F0EA]/20 flex items-center justify-center text-[#F4F0EA] hover:bg-[#F4F0EA] hover:text-[#0E0E0C] transition-all duration-300 transform hover:scale-110"
+                  className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
                 >
                   <Github className="w-5 h-5" />
                 </a>
@@ -48,13 +59,13 @@ const Hero = () => {
                   href="https://linkedin.com/in/nishant25kr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-[#F4F0EA]/20 flex items-center justify-center text-[#F4F0EA] hover:bg-[#F4F0EA] hover:text-[#0E0E0C] transition-all duration-300 transform hover:scale-110"
+                  className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
                 >
                   <Linkedin className="w-5 h-5" />
                 </a>
                 <a
                   href="mailto:nishant927472@gmail.com"
-                  className="w-12 h-12 rounded-full border border-[#F4F0EA]/20 flex items-center justify-center text-[#F4F0EA] hover:bg-[#F4F0EA] hover:text-[#0E0E0C] transition-all duration-300 transform hover:scale-110"
+                  className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
                 >
                   <Mail className="w-5 h-5" />
                 </a>
@@ -69,13 +80,12 @@ const Hero = () => {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="lg:col-span-4 flex justify-center lg:justify-end order-1 lg:order-2 w-full"
           >
-            <div className="relative w-64 h-80 sm:w-80 sm:h-[26rem] lg:w-[26rem] lg:h-[36rem] overflow-hidden rounded-[2rem] border border-[#F4F0EA]/10 group">
-              {/* Subtle overlay gradient to blend image with background */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E0C] via-transparent to-transparent opacity-80 z-10 transition-opacity duration-700 group-hover:opacity-40"></div>
+            <div className="glass-card relative w-64 h-80 sm:w-80 sm:h-[26rem] lg:w-[26rem] lg:h-[36rem] overflow-hidden rounded-[2rem] border border-[var(--border-soft)] group p-2 shadow-[var(--shadow-lift)]">
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(9,10,16,0.88)] via-transparent to-transparent opacity-80 z-10 transition-opacity duration-700 group-hover:opacity-40" />
               <img
                 src={profile}
                 alt="Nishant Kumar"
-                className="w-full h-full object-cover filter grayscale opacity-90 transition-all duration-700 group-hover:grayscale-0 group-hover:scale-105"
+                className="w-full h-full object-cover rounded-[1.5rem] filter grayscale opacity-90 transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105"
               />
             </div>
           </motion.div>

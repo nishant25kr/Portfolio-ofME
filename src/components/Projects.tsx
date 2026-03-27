@@ -85,9 +85,9 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
       >
         <motion.div 
           style={{ y: yImage }}
-          className="aspect-[4/3] sm:aspect-video lg:aspect-[4/5] overflow-hidden rounded-[2rem] border border-[#F4F0EA]/10 shadow-2xl"
+          className="glass-card aspect-[4/3] sm:aspect-video lg:aspect-[4/5] overflow-hidden rounded-[2rem] border border-[var(--border-soft)] shadow-[var(--shadow-lift)]"
         >
-          <div className="absolute inset-0 bg-[#0E0E0C]/40 group-hover:bg-transparent transition-colors duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] z-10"></div>
+          <div className="absolute inset-0 bg-[rgba(9,10,16,0.38)] group-hover:bg-transparent transition-colors duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] z-10" />
           <img 
             src={project.imageUrl}
             alt={project.title}
@@ -104,14 +104,14 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         className="w-full lg:w-1/2 flex flex-col pt-2 pb-4"
       >
         <div className="flex-1">
-          <span className="text-[#F4F0EA]/50 font-mono text-sm mb-4 block">
+          <span className="text-[var(--text-soft)] font-mono text-sm mb-4 block">
             0{index + 1}
           </span>
-          <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[#F4F0EA] mb-6 tracking-tight leading-tight mix-blend-difference">
+          <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)] mb-6 tracking-tight leading-tight">
             {project.title}
           </h3>
           
-          <p className="text-[#F4F0EA]/70 mb-10 text-lg leading-relaxed font-light">
+          <p className="text-[var(--text-muted)] mb-10 text-lg leading-relaxed font-light">
             {project.description}
           </p>
           
@@ -119,7 +119,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {project.technologies.map((tech) => (
               <span 
                 key={tech} 
-                className="px-4 py-2 bg-transparent text-[#F4F0EA]/80 rounded-full text-[10px] md:text-xs uppercase tracking-[0.2em] border border-[#F4F0EA]/20 backdrop-blur-md"
+                className="glass-card px-4 py-2 bg-transparent text-[var(--text-muted)] rounded-full text-[10px] md:text-xs uppercase tracking-[0.2em] border border-[var(--border-soft)]"
               >
                 {tech}
               </span>
@@ -132,7 +132,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 text-[#0E0E0C] bg-[#F4F0EA] px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:bg-white transition-all duration-300 transform hover:scale-105"
+            className="group flex items-center gap-3 text-[#111318] bg-[var(--text-primary)] px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:bg-white transition-all duration-500 hover:-translate-y-1"
           >
             View Project
             <ExternalLink className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1" />
@@ -141,7 +141,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             href={project.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-3 text-[#F4F0EA] border border-[#F4F0EA]/30 px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:bg-[#F4F0EA]/10 transition-all duration-300 transform hover:scale-105"
+            className="glass-card group flex items-center gap-3 text-[var(--text-primary)] border border-[var(--border-soft)] px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:border-[var(--border-strong)] transition-all duration-500 hover:-translate-y-1"
           >
             GitHub
             <Github className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-12" />
@@ -162,7 +162,7 @@ const Projects = () => {
   const headerY = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section ref={sectionRef} id="projects" className="py-32 bg-[#0E0E0C] text-[#F4F0EA]">
+    <section ref={sectionRef} id="projects" className="py-28 md:py-32 bg-[var(--bg-primary)] text-[var(--text-primary)]">
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <motion.div 
           style={{ y: headerY }}
@@ -170,17 +170,17 @@ const Projects = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-32 flex flex-col md:flex-row justify-between items-end border-b border-[#F4F0EA]/10 pb-8"
+          className="mb-24 md:mb-32 flex flex-col md:flex-row justify-between items-end border-b border-[var(--border-soft)] pb-8"
         >
           <div>
-            <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-4">
+            <h2 className="text-[var(--text-soft)] font-medium tracking-[0.24em] uppercase text-xs md:text-sm mb-4">
               02 // Work
             </h2>
             <h3 className="font-display text-6xl md:text-7xl lg:text-[7rem] tracking-tighter leading-none">
               SELECTED<br />PROJECTS
             </h3>
           </div>
-          <p className="mt-8 md:mt-0 text-[#F4F0EA]/40 max-w-sm uppercase tracking-widest text-[10px] md:text-xs">
+          <p className="mt-8 md:mt-0 text-[var(--text-soft)] max-w-sm uppercase tracking-widest text-[10px] md:text-xs">
             Pushing boundaries with code and intelligent architectures.
           </p>
         </motion.div>

@@ -42,17 +42,17 @@ const Education = () => {
   const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
 
   return (
-    <section id="education" className="py-32 bg-[#0E0E0C] text-[#F4F0EA] min-h-screen">
+    <section id="education" className="py-28 md:py-32 bg-[var(--bg-primary)] text-[var(--text-primary)] min-h-screen">
       <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-24 flex flex-col md:flex-row justify-between items-end border-b border-[#F4F0EA]/10 pb-8"
+          className="mb-20 md:mb-24 flex flex-col md:flex-row justify-between items-end border-b border-[var(--border-soft)] pb-8"
         >
           <div>
-            <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-sm mb-4">
+            <h2 className="text-[var(--text-soft)] font-medium tracking-[0.24em] uppercase text-xs md:text-sm mb-4">
               04 // Timeline
             </h2>
             <h3 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none">
@@ -60,17 +60,16 @@ const Education = () => {
             </h3>
           </div>
           
-          <div className="flex gap-6 mt-8 md:mt-0">
+          <div className="glass-card flex gap-3 mt-8 md:mt-0 rounded-full border border-[var(--border-soft)] px-4 py-2">
             <button
               onClick={() => setActiveTab('experience')}
-              className={`text-lg font-display tracking-tight transition-colors duration-300 ${activeTab === 'experience' ? 'text-[#F4F0EA]' : 'text-[#F4F0EA]/30 hover:text-[#F4F0EA]/70'}`}
+              className={`text-sm md:text-base font-display tracking-tight transition-colors duration-300 px-4 py-2 rounded-full ${activeTab === 'experience' ? 'bg-[rgba(247,243,238,0.12)] text-[var(--text-primary)]' : 'text-[var(--text-soft)] hover:text-[var(--text-primary)]'}`}
             >
               Experience
             </button>
-            <span className="text-[#F4F0EA]/20">/</span>
             <button
               onClick={() => setActiveTab('education')}
-              className={`text-lg font-display tracking-tight transition-colors duration-300 ${activeTab === 'education' ? 'text-[#F4F0EA]' : 'text-[#F4F0EA]/30 hover:text-[#F4F0EA]/70'}`}
+              className={`text-sm md:text-base font-display tracking-tight transition-colors duration-300 px-4 py-2 rounded-full ${activeTab === 'education' ? 'bg-[rgba(247,243,238,0.12)] text-[var(--text-primary)]' : 'text-[var(--text-soft)] hover:text-[var(--text-primary)]'}`}
             >
               Education
             </button>
@@ -90,19 +89,19 @@ const Education = () => {
               >
                 {experienceData.map((item) => (
                   <div key={item.id} className="group relative pl-8 md:pl-0">
-                    <div className="hidden md:block absolute left-[-40px] top-4 w-3 h-3 rounded-full border border-[#F4F0EA]/30 group-hover:bg-[#F4F0EA] group-hover:scale-150 transition-all duration-500"></div>
+                    <div className="hidden md:block absolute left-[-40px] top-4 w-3 h-3 rounded-full border border-[var(--border-strong)] group-hover:bg-[var(--accent)] group-hover:scale-150 transition-all duration-500" />
                     <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
                       <h4 className="font-display text-3xl md:text-5xl tracking-tight mb-2 md:mb-0">
                         {item.title}
                       </h4>
-                      <span className="text-[#F4F0EA]/50 font-mono text-sm uppercase tracking-widest shrink-0 md:ml-8">
+                      <span className="text-[var(--text-soft)] font-mono text-sm uppercase tracking-widest shrink-0 md:ml-8">
                         {item.date}
                       </span>
                     </div>
-                    <div className="text-xl text-[#F4F0EA]/70 mb-6 font-display">
+                    <div className="text-xl text-[var(--text-muted)] mb-6 font-display">
                       {item.organization}
                     </div>
-                    <p className="text-[#F4F0EA]/50 font-light leading-relaxed max-w-2xl text-lg">
+                    <p className="text-[var(--text-muted)] font-light leading-relaxed max-w-2xl text-lg">
                       {item.description}
                     </p>
                   </div>
@@ -119,22 +118,22 @@ const Education = () => {
               >
                 {educationData.map((item) => (
                   <div key={item.id} className="group relative pl-8 md:pl-0">
-                    <div className="hidden md:block absolute left-[-40px] top-4 w-3 h-3 rounded-full border border-[#F4F0EA]/30 group-hover:bg-[#F4F0EA] group-hover:scale-150 transition-all duration-500"></div>
+                    <div className="hidden md:block absolute left-[-40px] top-4 w-3 h-3 rounded-full border border-[var(--border-strong)] group-hover:bg-[var(--accent)] group-hover:scale-150 transition-all duration-500" />
                     <div className="flex flex-col md:flex-row md:items-baseline justify-between mb-4">
                       <h4 className="font-display text-3xl md:text-5xl tracking-tight mb-2 md:mb-0">
                         {item.institution}
                       </h4>
-                      <span className="text-[#F4F0EA]/50 font-mono text-sm uppercase tracking-widest shrink-0 md:ml-8">
+                      <span className="text-[var(--text-soft)] font-mono text-sm uppercase tracking-widest shrink-0 md:ml-8">
                         {item.period}
                       </span>
                     </div>
-                    <div className="text-xl text-[#F4F0EA]/70 mb-6 font-display">
-                      {item.degree} <span className="mx-2">•</span> <span className="text-[#F4F0EA]/40">{item.location}</span>
+                    <div className="text-xl text-[var(--text-muted)] mb-6 font-display">
+                      {item.degree} <span className="mx-2">•</span> <span className="text-[var(--text-soft)]">{item.location}</span>
                     </div>
                     <ul className="space-y-3 max-w-2xl">
                       {item.details.map((detail, i) => (
-                        <li key={i} className="flex items-start text-[#F4F0EA]/50 font-light text-lg">
-                          <span className="mr-4 text-[#F4F0EA]/30 mt-1.5 text-xs">◆</span>
+                        <li key={i} className="flex items-start text-[var(--text-muted)] font-light text-lg">
+                          <span className="mr-4 text-[var(--accent-soft)] mt-1.5 text-xs">◆</span>
                           <span className="leading-relaxed">{detail}</span>
                         </li>
                       ))}

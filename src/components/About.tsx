@@ -26,18 +26,18 @@ const features = [
 
 const About = () => {
   return (
-    <section id="about" className="py-32 bg-[#131312] relative overflow-hidden text-[#F4F0EA]">
+    <section id="about" className="py-28 md:py-32 bg-[var(--bg-elevated)] relative overflow-hidden text-[var(--text-primary)]">
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
 
         {/* Top Header Row */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-24 border-b border-[#F4F0EA]/10 pb-8">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 md:mb-24 border-b border-[var(--border-soft)] pb-8">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h2 className="text-[#F4F0EA]/50 font-medium tracking-[0.2em] uppercase text-sm mb-4">
+            <h2 className="text-[var(--text-soft)] font-medium tracking-[0.24em] uppercase text-xs md:text-sm mb-4">
               01 // About Me
             </h2>
             <h3 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none">
@@ -51,7 +51,7 @@ const About = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-md mt-12 md:mt-0"
           >
-            <p className="text-lg md:text-xl font-light text-[#F4F0EA]/70 leading-relaxed mix-blend-difference">
+            <p className="text-lg md:text-xl font-light text-[var(--text-muted)] leading-relaxed">
               I'm a Full-Stack Developer and B.Tech CSE student at Lovely Professional University. I specialize in architecting intelligent systems that merge profound aesthetics with engineered performance.
             </p>
           </motion.div>
@@ -66,7 +66,7 @@ const About = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="aspect-[4/5] bg-gradient-to-tr from-[#E5D3B3]/20 directly to-transparent border border-[#F4F0EA]/10 rounded-3xl p-8 relative overflow-hidden group"
+              className="glass-card aspect-[4/5] bg-gradient-to-tr from-[rgba(223,194,149,0.18)] to-transparent border border-[var(--border-soft)] rounded-3xl p-8 relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-10 transition-opacity duration-700"></div>
               <h4 className="font-display text-4xl leading-tight relative z-10 mix-blend-plus-lighter">
@@ -75,7 +75,7 @@ const About = () => {
             </motion.div>
           </div>
 
-          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-16 mt-12 md:mt-0">
+          <div className="md:col-span-7 lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-14 md:gap-y-16 mt-12 md:mt-0">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -83,15 +83,15 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-                className="group cursor-default relative pl-6 border-l border-[#F4F0EA]/20 hover:border-[#F4F0EA] transition-colors duration-500"
+                className="group cursor-default relative pl-6 border-l border-[var(--border-soft)] hover:border-[var(--accent)] transition-colors duration-500"
               >
-                <div className="mb-6 text-[#F4F0EA]/50 group-hover:text-[#E5D3B3] transition-colors duration-500">
+                <div className="mb-6 text-[var(--text-soft)] group-hover:text-[var(--accent)] transition-colors duration-500">
                   {feature.icon}
                 </div>
                 <h3 className="text-2xl font-display mb-4 tracking-tight">
                   {feature.title}
                 </h3>
-                <p className="text-[#F4F0EA]/60 font-light leading-relaxed">
+                <p className="text-[var(--text-muted)] font-light leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>
