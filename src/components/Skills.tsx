@@ -7,16 +7,28 @@ const skillCategories = [
     skills: ['C++', 'JavaScript', 'TypeScript', 'HTML/CSS']
   },
   {
-    title: 'Frameworks',
-    skills: ['React JS', 'Node.js', 'Express.js', 'Tailwind CSS']
+    title: 'Frontend',
+    skills: ['React.js', 'Next.js', 'Tailwind CSS']
+  },
+  {
+    title: 'Backend',
+    skills: ['Node.js', 'Express.js', 'Django']
   },
   {
     title: 'Databases',
-    skills: ['PostgreSQL', 'MongoDB', 'Redis']
+    skills: ['PostgreSQL', 'MongoDB', 'Prisma ORM']
   },
   {
-    title: 'Core',
-    skills: ['Data Structures', 'Algorithms', 'System Design']
+    title: 'Real-time',
+    skills: ['WebSockets', 'Redis Queue']
+  },
+  {
+    title: 'Tools',
+    skills: ['Git', 'GitHub', 'Agile', 'AI Tools']
+  },
+  {
+    title: 'Core CS + DSA',
+    skills: ['Problem Solving', 'Data Structures & Algorithms', 'System Design']
   }
 ];
 
@@ -42,6 +54,10 @@ const Skills = () => {
             </h3>
           </div>
         </motion.div>
+
+        <p className="max-w-2xl text-[var(--text-muted)] text-lg md:text-xl font-light leading-relaxed mt-4 mb-10">
+          Here's what I bring to your engineering team from day one:
+        </p>
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
           
@@ -98,7 +114,11 @@ const Skills = () => {
                    exit={{ opacity: 0 }}
                    className="text-[var(--text-soft)] font-display text-4xl md:text-6xl uppercase tracking-tighter leading-tight"
                  >
-                   Hover over <br /> a category <br /> to reveal <br /> stack.
+                  Hover a category
+                  <br />
+                  to see what I
+                  <br />
+                  use to ship.
                  </motion.div>
                )}
              </AnimatePresence>

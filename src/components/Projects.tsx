@@ -5,7 +5,9 @@ import { useRef } from 'react';
 interface Project {
   id: number;
   title: string;
-  description: string;
+  description: [string, string];
+  impact: string;
+  tagline: string;
   technologies: string[];
   features: string[];
   repoUrl: string;
@@ -17,7 +19,12 @@ const projects: Project[] = [
   {
     id: 1,
     title: 'RealTime Chess Game',
-    description: 'A real-time multiplayer chess platform with move validation, asynchronous processing, and reliable game recovery.',
+    description: [
+      'A real-time multiplayer chess platform.',
+      'Designed so every move is validated, queued, and persisted—without slowing gameplay.',
+    ],
+    impact: 'Demonstrates deep understanding of distributed systems, real-time communication, and scalable backend design.',
+    tagline: 'Not just a chess app — a distributed real-time system',
     technologies: ['Node.js', 'React.js', 'Chess.js', 'WebSocket', 'Redis', 'PostgreSQL'],
     features: [
       'Real-time multiplayer gameplay with board rendering',
@@ -32,8 +39,13 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'Meta Verse Platform',
-    description: 'A scalable real-time multi-user Metaverse platform built with a modular service-based architecture.',
+    title: 'MetaVerse Platform',
+    description: [
+      'A multi-user virtual space where presence stays real-time.',
+      'Modular services (HTTP, WebSockets, storage) keep scalability intentional—not accidental.',
+    ],
+    impact: 'Shows ability to architect complex systems with clean separation of concerns and production-grade thinking.',
+    tagline: 'A virtual world with real engineering behind it',
     technologies: ['Node.js', 'React.js', 'WebSocket', 'PostgreSQL', 'Prisma'],
     features: [
       'Modular microservice architecture separating HTTP APIs, WebSockets, and DB layers',
@@ -48,8 +60,13 @@ const projects: Project[] = [
   {
     id: 3,
     title: 'AI Task Assignment System',
-    description: 'An AI-driven admin dashboard that analyses task requirements and dynamically assigns them to the most suitable employees.',
-    technologies: ['Node.js', 'React.js', 'MongoDB', 'Express.js', 'Gemini API'],
+    description: [
+      'An AI system that reads a task brief and recommends the best employee.',
+      'Gemini-powered understanding plus a live admin dashboard turns “manual matching” into minutes.',
+    ],
+    impact: 'Reduces manual task allocation effort significantly—turning a real business problem into measurable time saved.',
+    tagline: 'Replaced hours of manual work with one smart algorithm',
+    technologies: ['Node.js', 'React.js', 'Express.js', 'MongoDB', 'Gemini API'],
     features: [
       'Admin dashboard for organizational task management and tracking',
       'AI-based assignment engine to extract required skills from task descriptions',
@@ -70,6 +87,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
   });
 
   const yImage = useTransform(scrollYProgress, [0, 1], [60, -60]);
+  const showDemoLink = Boolean(project.demoUrl && project.demoUrl !== project.repoUrl);
 
   return (
     <div 
@@ -112,7 +130,17 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
           </h3>
           
           <p className="text-[var(--text-muted)] mb-10 text-lg leading-relaxed font-light">
-            {project.description}
+            {project.description[0]}
+            <br />
+            {project.description[1]}
+          </p>
+
+          <p className="text-[var(--text-soft)] mb-6 text-base leading-relaxed font-light">
+            {project.impact}
+          </p>
+
+          <p className="text-[var(--accent)] text-xs uppercase tracking-[0.24em] leading-none">
+            {project.tagline}
           </p>
           
           <div className="flex flex-wrap gap-3 mb-12">
@@ -128,22 +156,25 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
         </div>
         
         <div className="flex flex-wrap items-center gap-6 mt-auto">
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex items-center gap-3 text-[#111318] bg-[var(--text-primary)] px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:bg-white transition-all duration-500 hover:-translate-y-1"
-          >
-            View Project
-            <ExternalLink className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
+          {showDemoLink && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-3 text-[#111318] bg-[var(--text-primary)] px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:bg-white transition-all duration-500 hover:-translate-y-1"
+            >
+              Live demo
+              <ExternalLink className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </a>
+          )}
+
           <a
             href={project.repoUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="glass-card group flex items-center gap-3 text-[var(--text-primary)] border border-[var(--border-soft)] px-8 py-4 rounded-full font-medium tracking-widest text-xs uppercase hover:border-[var(--border-strong)] transition-all duration-500 hover:-translate-y-1"
           >
-            GitHub
+            View on GitHub
             <Github className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-12" />
           </a>
         </div>
@@ -181,7 +212,7 @@ const Projects = () => {
             </h3>
           </div>
           <p className="mt-8 md:mt-0 text-[var(--text-soft)] max-w-sm uppercase tracking-widest text-[10px] md:text-xs">
-            Pushing boundaries with code and intelligent architectures.
+            Systems that feel fast today—and stay calm tomorrow.
           </p>
         </motion.div>
         

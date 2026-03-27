@@ -10,6 +10,7 @@ import Projects from './components/Projects';
 import Education from './components/Education';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
+import WhyHireNishant from './components/WhyHireNishant';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 
@@ -72,6 +73,7 @@ function App() {
           <Certifications />
           <Education />
           <Contact />
+          <WhyHireNishant />
         </main>
         <Footer />
       </div>

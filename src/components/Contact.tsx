@@ -55,12 +55,40 @@ const Contact = () => {
               06 // Connect
             </h2>
             <h3 className="font-display text-6xl md:text-7xl lg:text-[7rem] tracking-tighter leading-none mb-10">
-              LET'S <br /> COLLAB<span className="text-[var(--text-soft)]">-</span><br />ORATE
+              LET'S <br /> BUILD<br />SOMETHING GREAT<br />TOGETHER
             </h3>
             
             <p className="text-[var(--text-muted)] text-lg md:text-xl font-light leading-relaxed max-w-md mb-16">
-              Have a project in mind, an opportunity, or just want to say hello? I'm currently open to new roles and exciting projects.
+              I'm actively looking for full-time roles in full stack or backend development.<br />
+              If you're hiring someone who writes clean code, thinks about systems, and shows up ready to contribute — let's talk.
             </p>
+
+            <div className="flex flex-wrap gap-3 mb-10">
+              <a
+                href="mailto:nishant927472@gmail.com?subject=Resume%20request&body=Hi%20Nishant%2C%20could%20you%20share%20your%20resume%20please%3F"
+                className="glass-card inline-flex items-center justify-center rounded-full border border-[var(--border-soft)] px-6 py-4 text-xs uppercase tracking-[0.22em] text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all duration-500"
+              >
+                Download My Resume
+              </a>
+
+              <a
+                href="https://linkedin.com/in/nishant25kr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-card inline-flex items-center justify-center rounded-full border border-[var(--border-soft)] px-6 py-4 text-xs uppercase tracking-[0.22em] text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all duration-500"
+              >
+                Connect on LinkedIn
+              </a>
+
+              <a
+                href="https://github.com/nishant25kr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="glass-card inline-flex items-center justify-center rounded-full border border-[var(--border-soft)] px-6 py-4 text-xs uppercase tracking-[0.22em] text-[var(--text-primary)] hover:border-[var(--border-strong)] transition-all duration-500"
+              >
+                View GitHub
+              </a>
+            </div>
 
             <div className="space-y-8">
               <a href="mailto:nishant927472@gmail.com" className="group block max-w-max">
@@ -99,15 +127,15 @@ const Contact = () => {
                 <div className="mb-6 inline-flex p-4 rounded-full bg-[rgba(247,243,238,0.08)] text-[var(--text-primary)]">
                   <CheckCircle className="w-12 h-12" />
                 </div>
-                <h3 className="text-3xl font-display mb-4">Message Sent</h3>
+                <h3 className="text-3xl font-display mb-4">Got it — I’ll reply soon</h3>
                 <p className="text-[var(--text-muted)] font-light mb-8">
-                  Thank you for reaching out. I'll get back to you as soon as possible.
+                  Thanks for the note. Expect a clear, human response with next steps.
                 </p>
                 <button
                   onClick={() => setSubmitSuccess(false)}
                   className="px-8 py-4 border border-[var(--border-soft)] rounded-full hover:border-[var(--border-strong)] hover:text-[var(--accent)] transition-colors duration-500 tracking-widest text-xs uppercase"
                 >
-                  Send another
+                  Send another note
                 </button>
               </motion.div>
             ) : (
@@ -121,10 +149,10 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full bg-transparent border-b border-[var(--border-soft)] pb-4 pt-6 text-[var(--text-primary)] text-xl font-light focus:outline-none focus:border-[var(--border-strong)] transition-colors peer placeholder-transparent"
-                    placeholder="John Doe"
+                    placeholder="Your name"
                   />
                   <label htmlFor="name" className="absolute left-0 top-6 text-[var(--text-soft)] text-xl font-light transition-all duration-300 peer-focus:-top-2 peer-focus:text-xs peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[var(--text-muted)] peer-valid:-top-2 peer-valid:text-xs peer-valid:uppercase peer-valid:tracking-widest peer-valid:text-[var(--text-muted)]">
-                    What's your name?
+                    Your name
                   </label>
                 </div>
                 
@@ -137,10 +165,10 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     className="w-full bg-transparent border-b border-[var(--border-soft)] pb-4 pt-6 text-[var(--text-primary)] text-xl font-light focus:outline-none focus:border-[var(--border-strong)] transition-colors peer placeholder-transparent"
-                    placeholder="john@example.com"
+                    placeholder="you@company.com"
                   />
                   <label htmlFor="email" className="absolute left-0 top-6 text-[var(--text-soft)] text-xl font-light transition-all duration-300 peer-focus:-top-2 peer-focus:text-xs peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[var(--text-muted)] peer-valid:-top-2 peer-valid:text-xs peer-valid:uppercase peer-valid:tracking-widest peer-valid:text-[var(--text-muted)]">
-                    What's your email?
+                    Your email
                   </label>
                 </div>
                 
@@ -153,7 +181,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full bg-transparent border-b border-[var(--border-soft)] pb-4 pt-6 text-[var(--text-primary)] text-xl font-light focus:outline-none focus:border-[var(--border-strong)] transition-colors peer placeholder-transparent resize-none"
-                    placeholder="Hello Nishant, I'd like to talk about..."
+                    placeholder="A couple lines about the project..."
                   />
                   <label htmlFor="message" className="absolute left-0 top-6 text-[var(--text-soft)] text-xl font-light transition-all duration-300 peer-focus:-top-2 peer-focus:text-xs peer-focus:uppercase peer-focus:tracking-widest peer-focus:text-[var(--text-muted)] peer-valid:-top-2 peer-valid:text-xs peer-valid:uppercase peer-valid:tracking-widest peer-valid:text-[var(--text-muted)]">
                     Your message
@@ -167,7 +195,7 @@ const Contact = () => {
                     isSubmitting ? 'opacity-70 cursor-not-allowed scale-95' : 'hover:scale-[1.02]'
                   }`}
                 >
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {isSubmitting ? 'Sending...' : 'Send this message'}
                   {!isSubmitting && <Send className="w-4 h-4 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:-translate-y-1" />}
                 </button>
               </form>

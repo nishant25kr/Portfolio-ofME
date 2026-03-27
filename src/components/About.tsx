@@ -4,23 +4,23 @@ import { Code, Users, Clock, Briefcase } from 'lucide-react';
 const features = [
   {
     icon: <Code className="w-5 h-5" />,
-    title: "Technical Excellence",
-    description: "Proficient in modern Web Technologies, robust architectures, and strong algorithmic fundamentals."
+    title: "Complex under the hood",
+    description: "I build systems that stay fast and reliable—even when the load and edge-cases show up."
   },
   {
     icon: <Users className="w-5 h-5" />,
-    title: "Team Player",
-    description: "I thrive in collaborative agile environments, leveraging communication to build robust applications."
+    title: "Real Agile, real shipping",
+    description: "I work in sprints, break work into deliverables, and keep communication honest and clear."
   },
   {
     icon: <Clock className="w-5 h-5" />,
-    title: "Iterative Learning",
-    description: "Constantly learning and adapting to dynamic technology landscapes and emerging paradigms."
+    title: "REST APIs that matter",
+    description: "I’ve built production-ready Django REST APIs—built to be used, not just demonstrated."
   },
   {
     icon: <Briefcase className="w-5 h-5" />,
-    title: "Project Engineering",
-    description: "Experience in system architecture and orchestrating applications from concept to deployment."
+    title: "Polish until it feels inevitable",
+    description: "I care about the last 1%—because that’s what makes a product feel trustworthy."
   }
 ];
 
@@ -52,7 +52,9 @@ const About = () => {
             className="max-w-md mt-12 md:mt-0"
           >
             <p className="text-lg md:text-xl font-light text-[var(--text-muted)] leading-relaxed">
-              I'm a Full-Stack Developer and B.Tech CSE student at Lovely Professional University. I specialize in architecting intelligent systems that merge profound aesthetics with engineered performance.
+              I’m Nishant Kumar, a final-year Computer Science student at Lovely Professional University. I build things that are complex under the hood but effortless to use.<br />
+              At Dhobi G, I shipped production-ready Django REST APIs in real Agile sprints—on a laundry management platform that real users depended on.<br />
+              Outside of work, I build systems that push scale and polish—because I want to understand how products last. I’m not looking for just any job.
             </p>
           </motion.div>
         </div>
@@ -70,7 +72,9 @@ const About = () => {
             >
               <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-10 transition-opacity duration-700"></div>
               <h4 className="font-display text-4xl leading-tight relative z-10 mix-blend-plus-lighter">
-                Driven by <br /> logic, <br /> designed for <br /> humans.
+                Complex under the<br />
+                hood—effortless in<br />
+                the experience.
               </h4>
             </motion.div>
           </div>

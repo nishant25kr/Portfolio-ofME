@@ -9,21 +9,7 @@ const educationData = [
     period: '2022 - 2026',
     location: 'Phagwara, Punjab',
     details: [
-      'CGPA: 6.50',
-      'Specializing in Full-Stack Web Development',
-      'Built advanced projects like real-time multiplayer chess and Metaverse platforms'
-    ]
-  },
-  {
-    id: 2,
-    institution: 'Indian Public School',
-    degree: 'Intermediate (12th)',
-    period: '2019 - 2020',
-    location: 'Purnia, Bihar',
-    details: [
-      'Percentage: 70.00%',
-      'Focused on Mathematics and Science fundamentals',
-      'Developed early interest in programming and computer science'
+      'Built a strong foundation in computer science fundamentals while spending most of my free time building real projects and sharpening problem-solving skills.'
     ]
   }
 ];
@@ -31,10 +17,10 @@ const educationData = [
 const experienceData = [
   {
     id: 1,
-    title: 'Full Stack Developer Intern',
+    title: 'Full Stack Developer',
     organization: 'Dhobi G (Remote)',
-    date: 'June 2025 - Jul 2025',
-    description: 'Developed a responsive web-based laundry management platform using Next.js for dynamic UI components and Django for RESTful APIs enabling secure user management and order processing. Collaborated in Agile sprints, utilizing AI tools and Git for task efficiency.'
+    date: 'Jun 2025 – Jul 2025',
+    description: 'My first real taste of production development. I joined a small team building a laundry management platform and was responsible for both the frontend and backend—REST APIs in Django, responsive UI in Next.js, and Agile sprints with version control and AI-assisted tooling. Shipping features that real users interacted with changed how I think about writing code.'
   }
 ];
 
@@ -65,7 +51,7 @@ const Education = () => {
               onClick={() => setActiveTab('experience')}
               className={`text-sm md:text-base font-display tracking-tight transition-colors duration-300 px-4 py-2 rounded-full ${activeTab === 'experience' ? 'bg-[rgba(247,243,238,0.12)] text-[var(--text-primary)]' : 'text-[var(--text-soft)] hover:text-[var(--text-primary)]'}`}
             >
-              Experience
+              Internship
             </button>
             <button
               onClick={() => setActiveTab('education')}

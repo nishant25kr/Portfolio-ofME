@@ -5,30 +5,16 @@ const certifications = [
   {
     id: 1,
     title: 'Data Structures & Algorithms',
-    issuer: 'Cipher School',
-    date: 'July 2023',
+    issuer: 'Cipher Schools',
+    date: 'Dec 2024',
     credentialUrl: 'https://cipherschools.com/certificate/data-structures-algorithms',
   },
   {
     id: 2,
     title: 'Cloud Computing',
     issuer: 'NPTEL',
-    date: 'May 2023',
+    date: 'Jul 2024',
     credentialUrl: 'https://nptel.ac.in/certificate/cloud-computing',
-  },
-  {
-    id: 3,
-    title: 'Design and Analysis of Algorithm',
-    issuer: 'Coursera',
-    date: 'January 2023',
-    credentialUrl: 'https://coursera.org/certificate/design-analysis-algorithm',
-  },
-  {
-    id: 4,
-    title: 'Generative AI for Everyone',
-    issuer: 'Coursera',
-    date: 'December 2022',
-    credentialUrl: 'https://coursera.org/certificate/generative-ai-everyone',
   },
 ];
 
@@ -45,10 +31,10 @@ const Certifications = () => {
         >
           <div>
             <h2 className="text-[var(--text-soft)] font-medium tracking-[0.24em] uppercase text-xs md:text-sm mb-4">
-              05 // Accolades
+              05 // Certifications
             </h2>
             <h3 className="font-display text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-none">
-              CERTIFIED
+              CERTIFICATIONS
             </h3>
           </div>
         </motion.div>

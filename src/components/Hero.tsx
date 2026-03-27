@@ -29,7 +29,7 @@ const Hero = () => {
               className="mb-8"
             >
               <h2 className="text-[var(--text-soft)] font-medium tracking-[0.26em] uppercase text-xs md:text-sm mb-6 ml-2">
-                Creative Developer & Engineer
+                Full Stack Developer Who Builds Things That Actually Work at Scale
               </h2>
               <h1 className="font-display text-[12vw] lg:text-[8rem] leading-[0.84] text-[var(--text-primary)] tracking-[-0.04em] mb-4">
                 Nishant <br /> Kumar.
@@ -43,32 +43,46 @@ const Hero = () => {
               className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mt-5 md:mt-10"
             >
               <p className="max-w-lg text-[var(--text-muted)] text-lg md:text-xl font-light leading-relaxed ml-2">
-                Crafting scalable web solutions and intelligent systems. I turn bold ideas into immersive digital experiences.
+                I design and engineer end-to-end web apps—from real-time multiplayer to AI-powered platforms.<br />
+                Open to full-time roles where I can ship great products with a great team.
               </p>
 
-              <div className="flex space-x-4 sm:ml-auto pr-4">
+              <div className="flex items-center sm:ml-auto pr-4 gap-5">
                 <a
-                  href="https://github.com/nishant25kr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
+                  href="#contact"
+                  className="glass-card inline-flex items-center gap-3 rounded-full border border-[var(--border-soft)] px-6 py-4 text-sm font-medium tracking-widest uppercase text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
                 >
-                  <Github className="w-5 h-5" />
+                  Open to Work — Let's Talk
+                  <span aria-hidden className="text-[var(--accent)]">→</span>
                 </a>
-                <a
-                  href="https://linkedin.com/in/nishant25kr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
-                >
-                  <Linkedin className="w-5 h-5" />
-                </a>
-                <a
-                  href="mailto:nishant927472@gmail.com"
-                  className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
-                >
-                  <Mail className="w-5 h-5" />
-                </a>
+
+                <div className="flex space-x-4">
+                  <a
+                    href="https://github.com/nishant25kr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
+                    aria-label="GitHub"
+                  >
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="https://linkedin.com/in/nishant25kr"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
+                    aria-label="LinkedIn"
+                  >
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a
+                    href="mailto:nishant927472@gmail.com"
+                    className="glass-card w-12 h-12 rounded-full border border-[var(--border-soft)] flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-strong)] hover:-translate-y-1 transition-all duration-500"
+                    aria-label="Email"
+                  >
+                    <Mail className="w-5 h-5" />
+                  </a>
+                </div>
               </div>
             </motion.div>
           </div>
