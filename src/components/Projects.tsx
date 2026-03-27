@@ -139,7 +139,7 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             {project.impact}
           </p>
 
-          <p className="text-[var(--accent)] text-xs uppercase tracking-[0.24em] leading-none">
+          <p className="text-[var(--accent)] m-3 text-xs uppercase tracking-[0.24em] leading-none">
             {project.tagline}
           </p>
           
